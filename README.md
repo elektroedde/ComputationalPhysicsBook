@@ -5,7 +5,9 @@ Solutions to exercises from *Computational Physics* (2nd Edition) by Nicholas J.
 
 ## Progress
 ✅ - Complete
+
 ❌ - Incomplete
+
 ⭐️ - Complete and properly styled, labelled, designed and commented.
 
 ### Chapter 1: A First Numerical Problem
