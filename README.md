@@ -4,16 +4,19 @@ Solutions to exercises from *Computational Physics* (2nd Edition) by Nicholas J.
 ---
 
 ## Progress
+✅ - Complete
+❌ - Incomplete
+⭐️ - Complete and properly styled, labelled, designed and commented.
 
 ### Chapter 1: A First Numerical Problem
 | Exercise | Status |
 |----------|--------|
-| 1.1 | ❌ |
-| 1.2 | ❌ |
-| 1.3 | ❌ |
-| 1.4 | ❌ |
-| 1.5 | ❌ |
-| 1.6 | ❌ |
+| 1.1 | ✅ |
+| 1.2 | ✅ |
+| 1.3 | ✅ |
+| 1.4 | ✅ |
+| 1.5 | ✅ |
+| 1.6 | ✅ |
 
 ### Chapter 2: Realistic Projectile Motion
 | Exercise | Status |
