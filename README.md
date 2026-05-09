@@ -16,7 +16,7 @@ Solutions to exercises from *Computational Physics* (2nd Edition) by Nicholas J.
 
 ## Progress
 
-**0 / 267 problems complete**
+**11 / 267 problems complete**
 
 ---
 
