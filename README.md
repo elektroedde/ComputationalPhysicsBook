@@ -23,14 +23,14 @@ Solutions to exercises from *Computational Physics* (2nd Edition) by Nicholas J.
 ### Chapter 1 — A First Numerical Problem &nbsp;·&nbsp; 6 problems
 
 <table>
-<tr><td>1 ❌</td><td>2 ❌</td><td>3 ❌</td><td>4 ❌</td></tr>
-<tr><td>5 ❌</td><td>6 ❌</td><td></td><td></td></tr>
+<tr><td>1 ✅</td><td>2 ✅</td><td>3 ✅</td><td>4 ✅</td></tr>
+<tr><td>5 ✅</td><td>6 ✅</td><td></td><td></td></tr>
 </table>
 
 ### Chapter 2 — Realistic Projectile Motion &nbsp;·&nbsp; 27 problems
 
 <table>
-<tr><td>1 ❌</td><td>2 ❌</td><td>3 ❌</td><td>4 ❌</td></tr>
+<tr><td>1 ✅</td><td>2 ✅</td><td>3 ✅</td><td>4 ❌</td></tr>
 <tr><td>5 ❌</td><td>6 ❌</td><td>7 ❌</td><td>8 ❌</td></tr>
 <tr><td>9 ❌</td><td>10 ❌</td><td>11 ❌</td><td>12 ❌</td></tr>
 <tr><td>13 ❌</td><td>14 ❌</td><td>15 ❌</td><td>16 ❌</td></tr>
