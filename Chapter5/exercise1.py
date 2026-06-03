@@ -1,16 +1,18 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-
+import time
 outer_bc = 0
 inner_bc = 1
-N = 30
+N = 50
 width = N*0.15
 r1 = int(np.floor(N/2 - width))
 r2 = int(np.ceil(N/2 + width))
 
 
 V = np.zeros((N, N))
+Ex = np.zeros((N, N))
+Ey = np.zeros((N, N))
 
 V[:, 0] = outer_bc
 V[:, -1] = outer_bc
@@ -23,24 +25,48 @@ for i in range(r1, r2):
 
 
 
-n_iter = 500
+
+n_iter = 1000
 frames = [V.copy()]
+starttime = time.time()
 for _ in range(n_iter):
     Vn = V.copy()
     for i in range(0, N):
         for j in range(0, N):
             if not (i == 0 or i == N-1 or j == 0 or j == N-1) and not (r1 <= i < r2 and r1 <= j < r2):
                 V[i, j] = 1/4 * (Vn[i-1, j] + Vn[i+1, j] + Vn[i, j-1] + Vn[i, j+1])
+
+
     frames.append(V.copy())
+endtime = time.time() - starttime
+print(f"{endtime*1000:.0f}ms")
+
+for i in range(1, N-1):
+    for j in range(1, N-1):
+        Vn = V.copy()
+        Ex[i, j] = -1/2 * (Vn[i, j+1] - Vn[i,j-1])
+        Ey[i, j] = 1/2 * (Vn[i+1, j] - Vn[i-1,j])
+
+
+
+Emag = np.sqrt(Ex**2 + Ey**2)
+Edir = np.arctan2(Ey, Ex)
 
 fig, ax = plt.subplots()
-im = ax.imshow(frames[0], cmap="jet", vmin=-1, vmax=1)
+im = ax.imshow(frames[0], cmap="jet", vmin=0, vmax=1)
 
 def update(frame):
     im.set_data(frames[frame])
-    ax.set_title(f"Frame {frame}")
+
 
 ani = FuncAnimation(fig, update, frames=len(frames), interval=1)
+ax.set_title("Iterative solution")
+ax.set_xlabel("x [cm]")
+ax.set_ylabel("y [cm]")
+fig.colorbar(im, ax=ax)
+plt.show()
+
+plt.imshow(frames[-1], cmap="jet")
 plt.show()
 
 fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
@@ -51,6 +77,12 @@ surf = ax.plot_surface(X, Y, frames[-1], cmap="jet",
 
 
 
+
+
 fig.colorbar(surf, shrink=0.5, aspect=5)
 
+plt.show()
+
+plt.imshow(frames[-1], cmap="jet")
+plt.quiver(X[::2, ::2], Y[::2, ::2], Ex[::2, ::2], Ey[::2, ::2], scale=2, width=0.007)
 plt.show()
