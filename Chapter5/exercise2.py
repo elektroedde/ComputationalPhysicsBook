@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
 import time
 
 
@@ -16,9 +15,8 @@ Ex = np.zeros((N, N))
 Ey = np.zeros((N, N))
 
 V[:, 0] = outer_bc
-V[:, -1] = outer_bc
-V[0, :] =  outer_bc
-V[-1, :] = outer_bc
+V[0, :] = outer_bc
+
 
 for i in range(r1, N):
     for j in range(r1, N):
@@ -26,32 +24,36 @@ for i in range(r1, N):
 
 starttime = time.time()
 for _ in range(1000):
-    Vn = V.copy()
     for i in range(N):
         for j in range(i, N):
             if  (i != 0 and j != 0 and (i < r1 or j < r1)):
-
+                left = V[i,j-1]
+                right = left if j==N-1 else V[i,j+1]
+                top = V[i-1, j]
+                bottom = V[i+1,j]
                 #If we are on the right edge, symmetry
                 if(j==N-1):
-                    V[i, j] = 1/4 * (Vn[i-1, j] + Vn[i+1, j] + 2*Vn[i, j-1])
+                    V[i, j] = 1/4 * (top + bottom + 2*left)
                 #If we are on the slope, symmetry
                 elif(i==j):
-                    V[i, j] = 1/4 * (2*Vn[i-1, j] + 2*Vn[i, j+1])
+                    V[i, j] = 1/4 * (2*top+ 2*right)
                 else:
-                    V[i, j] = 1/4 * (Vn[i-1, j] + Vn[i+1, j] + Vn[i, j-1] + Vn[i, j+1])
+                    V[i, j] = 1/4 * (top+right+left+bottom)
 
 
 
-V[:,:r1] += V[:r1,:].transpose()
-for i in range(r1):
-    V[i,i] /= 2
+
+V[:r1, :r1] += np.triu(V[:r1, :r1],1).transpose()
+
+
+V[r1:N,:r1] += V[:r1, r1:N].transpose()
 endtime = time.time() - starttime
 
 
 #(0,N),#!(0,N):
 #Add 0 rows before, N rows after
 #!Add 0 columns before, N columns after
-V=np.pad(V,((0,N),(0,N)),'reflect')
+V=np.pad(V,((0,N-1),(0,N-1)),'reflect')
 
 
 print(f"{endtime*1000:.0f}ms")
